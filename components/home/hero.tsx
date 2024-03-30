@@ -1,16 +1,6 @@
 "use client"
 import * as React from 'react'
 
-import Autoplay from "embla-carousel-autoplay"
-
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
 import Image from 'next/image'
@@ -48,86 +38,3 @@ export const Hero = () => {
 
 
 
-
-export function CarouselPlugin() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: false })
-  )
-
-  const cards = [<Card1 />, <Card2 />, <Card3 />]
-
-  return (
-    <Carousel
-      plugins={[plugin.current]}
-      className=" max-w-full m-0 p-0 border-0  w-screen  "
-    //   onMouseEnter={plugin.current.stop}
-    //   onMouseLeave={plugin.current.reset}
-    >
-      <CarouselContent>
-        {Array.from({ length: 3 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="">
-              <Card className='text-pretty rounded-none border-none'>
-                <CardContent className="flex h-full min-h-screen    border-0 items-center">
-                  
-                  {cards[index]}
-
-                </CardContent>
-              </Card>
-              
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
-  )
-}
-
-
- function Card1() {
-  return (
-    <section className={cn("flex flex-col-reverse md:flex-row gap-8  w-full md:px-4 lg:px-8 items-center justify-between")}>
-        <div className={cn("flex-1 flex flex-col gap-6 justify-start items-start")}>
-            <h1 className='font-semibold text-3xl md:text-4xl lg:text-5xl leading-10 max-w-lg text-pretty'>Take Charge of your Finance Today <span className=' text-indigo-500'>Through Supported trading</span></h1>
-            <p className='md:text-sm text-xs text-slate-400'>Grow your portfolio and make money at the comfort of your home with us</p>
-            <Link href={'/login'} >
-              <Button>Register</Button>
-            </Link>
-        </div>
-        <div className={cn("flex-1 w-full flex justify-end")}>
-            <Image src={'/invest.svg'} alt='portfolio' width={100} height={100} className='h-[40vh] md:h-[60vh] w-auto mx-auto float-end' />
-        </div>
-    </section>
-  )
-}
-
-function Card2() {
-    return (
-      <section className={cn("flex flex-col-reverse md:flex-row gap-8  w-full md:px-4 lg:px-8 items-center justify-between")}>
-          <div className={cn("flex-1 flex flex-col  gap-6 justify-start items-start")}>
-              <h1 className='font-semibold text-3xl md:text-4xl lg:text-5xl leading-10 max-w-lg'>Get Connected to Top  <span className='text-indigo-500'>Traders all over the Continent</span></h1>
-              <p className='md:text-sm text-xs text-slate-400'>Grow your portfolio and make money at the comfort of your home with us</p>
-              <Button>Register</Button>
-          </div>
-          <div className={cn("flex-1 w-full min-w-md flex justify-end")}>
-              <Image src={'/enjoy.svg'} alt='portfolio' width={100} height={100} className='h-[40vh] md:h-[60vh] w-auto mx-auto float-end' />
-          </div>
-      </section>
-    )
-  }
-
-  function Card3() {
-    return (
-      <section className={cn("flex relative flex-col-reverse md:flex-row gap-8  w-full md:px-4 lg:px-8 items-center justify-between")}>
-          <div className={cn("flex-1 flex flex-col gap-6 justify-start items-start")}>
-              <h1 className='font-semibold text-3xl md:text-4xl lg:text-5xl leading-10  max-w-lg'>Grow with Us and start your Revenue  <span className='text-indigo-500'>Six Figures Journey</span></h1>
-              <p className='md:text-sm text-xs text-slate-400'>Grow your portfolio and make money at the comfort of your home with us</p>
-              <Button>Register</Button>
-          </div>
-          <div className={cn("flex-1 flex w-full min-w-md justify-end relative")}>
-              <Image src={'/revenue.svg'} alt='portfolio' width={100} height={100} className='h-[40vh] md:h-[60vh] w-auto mx-auto relative float-end' />
-          </div>
-      </section>
-    )
-  }
-  
