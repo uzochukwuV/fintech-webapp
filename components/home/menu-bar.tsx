@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { ModeToggle } from "../change-theme";
+
 import { SideBar } from "./side-bar";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -18,6 +18,10 @@ export const MenuBar = (params?: { params?: { id: any } }) => {
     
     if (params?.params?.id?.user) {
       setId(params.params.id.user._id);
+    }
+
+    if(window?.document){
+      changeNav()
     }
   });
 
@@ -47,9 +51,7 @@ export const MenuBar = (params?: { params?: { id: any } }) => {
   })
   }
 
-  if(window.document){
-    changeNav()
-  }
+  
   
   
 

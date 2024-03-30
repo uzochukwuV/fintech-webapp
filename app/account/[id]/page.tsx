@@ -10,6 +10,11 @@ import { getAccount, getUser } from '@/lib/helpers';
 async function Page({ params }: { params: { id: string } }) {
   const {user} = await getUser(params.id!)
   const {account}= await getAccount(user._id)
+
+  console.log(user);
+  console.log(account);
+  
+  
   
   
   return (

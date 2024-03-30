@@ -3,6 +3,7 @@ import { AccountDocument } from './account';
 
 
 export interface UserDocument extends Document {
+    // _id?: String,
     firstName: String,
     lastName: String,
     username: String,

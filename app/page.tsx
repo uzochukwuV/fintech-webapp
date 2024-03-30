@@ -12,8 +12,10 @@ import Image from "next/image";
 import {  cookies } from "next/headers";
 import { decrypt, updateSession } from "@/lib/auth";
 import Service from "@/components/home/services";
+import SubComponent from "@/components/home/sub";
 
 export default async function Home() {
+  
  
   console.log("Heloo dear");
   const cookie = cookies().get('session')?.value
@@ -35,6 +37,7 @@ export default async function Home() {
     <Hero />
     <Plans />
     <Service />
+    <SubComponent />
 
     </section>
   );

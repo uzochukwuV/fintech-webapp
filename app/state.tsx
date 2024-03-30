@@ -2,18 +2,34 @@
 
 
 
+import { AccountInterface, UserInterface } from '@/utils/constants'
 import React, { Dispatch as Dis, PropsWithChildren, createContext, useReducer, useState } from 'react'
+
+
+
+
+const UserType: UserInterface ={
+  username:"",
+  email: "",
+  firstName: "",
+  lastName: "",
+}
+
+const AccountType : AccountInterface = {
+  _user: "",
+  balance: 0,
+  bonus: 0,
+  tradeBalance: 0,
+  plan: ''
+}
 
 var init: Dis<any> = ()=> {}
 
-export const Context = createContext({user:'', account: ''})
+export const Context = createContext({user:UserType, account: AccountType})
 export const Dispatch = createContext(init)
 
 
-const al = {
-  user: "hey",
-  account: "hi"
-}
+const al = {user:UserType, account: AccountType}
 
 
 function reducer(state:{user:string, account:string}, action: {type:string, payload:any}) {

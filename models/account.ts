@@ -9,7 +9,7 @@ export interface AccountDocument extends Document {
     balance: Number,
     tradeBalance: Number,
     bonus: Number,
-    plan: PlanDocumnet['_id'],
+    plan: [PlanDocumnet['_id']]| PlanDocumnet['_id'],
     referrals: String[],
     referralBonus: Number,
     lastGain: Number,
