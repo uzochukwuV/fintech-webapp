@@ -105,7 +105,7 @@ export default function RegisterForm() {
       
     }).catch((e)=> {
       console.log(e.message);
-      
+      setIsLoading(false)
     })
     setIsLoading(false)
   }

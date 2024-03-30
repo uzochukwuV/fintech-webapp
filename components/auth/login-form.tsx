@@ -78,7 +78,7 @@ export default function LoginForm() {
       
     }).catch((e)=> {
       console.log(e);
-      
+      setIsLoading(false)
     })
     setIsLoading(false)
   }
