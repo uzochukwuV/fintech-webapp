@@ -23,12 +23,6 @@ import { Context } from '@/app/state'
 
 
 export const Hero = () => {
-  const context = React.useContext(Context)
-
-  React.useEffect(() => {
-    console.log(context);
-    
-  }, [])
   
   return (
     <div className='hero-container sm:pt-20 md:pt-10 sm:max-h-screen h-[600px] py-10 w-full  relative '>
