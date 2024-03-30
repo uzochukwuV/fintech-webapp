@@ -12,7 +12,7 @@ function LoginPage() {
         <div className=' max-w-[600px] w-full flex justify-center items-center col-span-5  '>
             <div className='max-w-md sm:w-[480px] lg:w-[560px] transition-all duration-200'>
             <div className='text-xl py-6 pb'>Log in to your Account</div>
-            <div className='pb-4'>Don't have an account? <span className=' text-primary'>Sign Up</span></div>
+            <div className='pb-4'>Don&apos;t have an account? <span className=' text-primary'>Sign Up</span></div>
             <LoginForm />
             </div>
         </div>

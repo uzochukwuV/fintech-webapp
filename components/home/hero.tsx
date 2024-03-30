@@ -23,7 +23,7 @@ export const Hero = () => {
             <div className='pt-20 sm:pt-0 md:mt-20 col-span-12 sm:col-span-11 md:col-span-6 '>
                   
              <div className='min-h-[150px] md:min-h-[200px]'>
-             <TypeIt>   <h1 className='text-4xl antialiased capitalize text-pretty font-semibold sm:text-5xl  md:text-6xl  duration-500 delay-100 ' ><span className='block md:inline text-green-600 '>Generalize</span> and get <span className='text-green-600'>customers</span> feedback</h1></TypeIt>
+              <h1 className='text-4xl antialiased capitalize text-pretty font-semibold sm:text-5xl  md:text-6xl  duration-500 delay-100 ' ><span className='block md:inline text-green-600 '>Generalize </span> and get <span className='text-green-600'>customers</span> feedback</h1>
              </div>
                   <p className='text-xs sm:text-sm text-slate-300 my-2 delay-200 md:my-4 h-14 sm:h-10 animate-text duration-500  pt-10 overflow-hidden'>Get insights of what your customers want using our product on a daily basis through forex salvaging amd forex trading leveraging</p>
                   <div className='sm:h-12 h-12 animate-text duration-500 delay-200  pt-20 overflow-hidden'>
