@@ -52,7 +52,7 @@ function SubComponent() {
       <p className=" text-center text-slate-500 text-xs">
         We provide you with the best alternative so you can earn while you sleep
       </p>
-      <div className="flex gap-10 justify-center rounded-2xl bg-slate-50 max-h-screen py-10 mt-6">
+      <div className="flex gap-10 justify-center rounded-2xl bg-slate-50 max-h-[600px] py-10 mt-6">
         {plans.map((plan) => (
           <div key={plan.min_deposit}>
             <SubComponentPlan props={plan} />
