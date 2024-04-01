@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Context, Dispatch } from '@/app/state'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { AccountSideBar } from './sidebar'
 
 function Menu() {
     const transition = useTransition()
@@ -50,7 +51,7 @@ function Menu() {
           </div>
         </div>
         <div className="md:hidden">
-          <MenuSquareIcon />
+          <AccountSideBar />
         </div>
         <div className="  justify-end gap-10 w-3/12 items-center hidden md:flex">
           <div className="flex gap-4 items-center">
