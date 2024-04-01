@@ -3,15 +3,20 @@
 import React, { useContext } from "react";
 import { updateSession } from "@/lib/auth";
 import { cn } from "@/lib/utils";
+import { serverHooks } from "next/dist/server/app-render/entry-base";
 
 
 
 export default async function Layout({
     children,
-  }: Readonly<{
+    params
+  }: {
     children: React.ReactNode;
-  }>){
+    params: {id: string}
+  }){
 
+    
+    
 
     
     

@@ -1,5 +1,5 @@
 import Menu from '@/components/account/menu'
-import SubComponent from '@/components/home/sub'
+import Personal from '@/components/profile/personal'
 import React from 'react'
 
 async function Page() {
@@ -7,7 +7,7 @@ async function Page() {
   return (
     <div>
         <Menu />
-        
+        <Personal />
     </div>
   )
 }

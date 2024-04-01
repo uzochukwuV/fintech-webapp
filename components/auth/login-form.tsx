@@ -25,6 +25,7 @@ import { Dialog, DialogDescription } from "../ui/dialog";
 import { Context } from "@/app/state";
 
 
+
 export const formSchema = z.object({
   password: z
     .string()
@@ -78,6 +79,9 @@ export default function LoginForm() {
       
     }).catch((e)=> {
       console.log(e);
+      toast({
+        title: "Invalid Username and Password",
+      })
       setIsLoading(false)
     })
     setIsLoading(false)

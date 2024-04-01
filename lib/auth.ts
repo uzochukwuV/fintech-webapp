@@ -34,6 +34,21 @@ async function bencrypt(params:any) {
     return encrypted;
 }
 
+export async function checkId(id:string){
+    if(!id) return false
+    await connectToDB();
+
+    try {
+        const user= await User.findById(id).catch((e)=> null)
+
+        if(!user) return 
+
+    return true
+    } catch (error) {
+        throw error
+    }
+}
+
 export async function login(formData:any) {
     await connectToDB();
     const form = formData;

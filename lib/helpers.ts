@@ -1,7 +1,7 @@
 import User from "@/models/user";
 import connectToDB from "./mongoose";
 import Account from "@/models/account";
-
+import Error from "next/error";
 
 
 
@@ -10,6 +10,7 @@ export async function getUser(params:string) {
 
     try {
         const user = await User.findById(params);
+        if(!user) return {user};
         
         return {user}
     } catch (error) {

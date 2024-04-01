@@ -11,8 +11,8 @@ async function Page({ params }: { params: { id: string } }) {
   const {user} = await getUser(params.id!)
   const {account}= await getAccount(user._id)
 
-  console.log(user);
-  console.log(account);
+  console.log(user.toJSON());
+  console.log(account.toJSON());
   
   
   
@@ -22,7 +22,7 @@ async function Page({ params }: { params: { id: string } }) {
 
        
         <div>
-        <Overview user={user}  account={account} />
+        <Overview user={user.toJSON()}  account={account.toJSON()} />
         </div>
 
     </>
