@@ -8,7 +8,9 @@ import { cn } from '@/lib/utils'
 
 function Personal() {
     const [step, setStep] = useState(0)
-    const items = [<Trx />,   <Trx /> , <NotificationSetting />  ]
+    const items = [<Trx key={1} />,   <Trx key={2} /> , <NotificationSetting key={3} />  ]
+
+    let current = items[step]
   return (
     <section className=' text-black p-4 sm:px-8 md:px-12 lg:px-20'>
         <div className="personalHead py-4 ">
@@ -43,7 +45,7 @@ function Personal() {
                 <p>Damian James Lane</p>
             </div>
         </div> */}
-        {items[step]}
+        {current}
     </section>
   )
 }
