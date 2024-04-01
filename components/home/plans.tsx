@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 
 function Plans() {
   return (
-    <div className='relative md:max-h-screen md:h-[600px] pt-24 py-4  text-black px-4 md:px-8 lg:px-12'>
+    <div id='services' className='relative md:max-h-screen md:h-[600px] pt-24 py-4  text-black px-4 md:px-8 lg:px-12'>
       {/* <div className=' text-center my-6'>
         <h2 className=' font-semibold text-3xl '>Earn with Trading Plans</h2>
       </div> */}

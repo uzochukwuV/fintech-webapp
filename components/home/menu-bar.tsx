@@ -89,32 +89,32 @@ export const MenuBar = ({params}: { params?: { user?: any } }) => {
           )}
         >
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
           >
-            Home
+            <Link href={'/'} >Home</Link>
           </div>
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2" , path.includes("auth") && " text-slate-700")}
           >
-            Services
+            <Link href={'/#about'} >About</Link>
           </div>
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
           >
-            About
+            <Link href={'/#services'} >Services</Link>
           </div>
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
           >
-            Products
+            <Link href={'/#product'} >Products</Link>
           </div>
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
           >
             Testimony
           </div>
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
           >
             FAQ
           </div>

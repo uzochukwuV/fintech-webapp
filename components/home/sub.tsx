@@ -44,7 +44,7 @@ interface PlanInterface {
 function SubComponent() {
   const { user, account } = useContext(Context);
   return (
-    <section className=" px-12 py-10">
+    <section id="product" className=" px-12 py-10">
       <h1 className=" mx-auto text-center text-black text-3xl font-medium max-w-sm">
         {" "}
         Start a Journey

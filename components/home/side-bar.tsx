@@ -9,10 +9,11 @@ export const SideBar = () => {
         <SheetTrigger asChild>
             <MenuIcon />
         </SheetTrigger>
-        <SheetContent>
-            <SheetHeader>
-                <SheetTitle className=' mt-20'>
+        <SheetContent className=' bg-slate-100'>
+            <SheetHeader className=' bg-slate-100'>
+                <SheetTitle className=' mt-20 space-y-6 text-black flex justify-start items-start flex-col gap-6 *:rounded-lg *:border *:p-2'>
                   <Link href={'/auth/login'}>Login</Link>
+                  <Link href={'/auth/register'}>Register</Link>
                 </SheetTitle>
             </SheetHeader>
         </SheetContent>
