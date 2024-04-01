@@ -26,6 +26,7 @@ import { useRouter } from "next/navigation";
 import { Context, Dispatch } from "@/app/state";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import Menu from "./menu";
+import { logout } from "@/lib/auth";
 
 
 function Overview({ user, account }: { user: any; account: any }) {

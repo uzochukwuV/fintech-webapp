@@ -1,10 +1,18 @@
 "use client"
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 
 export default function CheckUser ({params}: {params: {session: string| undefined}}) {
     const router = useRouter()
-    if(params.session) router.push('/')
+    const [session, setSession] = useState<string|undefined>()
+    
+    
+    useEffect(() => {
+        setSession(params.session)
+        if(params.session) router.push('/')
+    }, [session])
+    
   return (
     <div></div>
   )

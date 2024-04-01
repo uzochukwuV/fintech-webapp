@@ -12,7 +12,7 @@ import ChangePassword from './changePassword';
 export default function Trx() {
     const {user, account} = useContext(Context)
   return (
-    <section className=' flex'>
+    <section>
     <form>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
@@ -253,7 +253,7 @@ export default function Trx() {
       
     </form>
 
-    <ChangePassword />
+    
     </section>
   )
 }

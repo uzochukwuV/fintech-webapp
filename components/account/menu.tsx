@@ -4,7 +4,7 @@ import { Button } from '../ui/button'
 import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar'
 import { BellDotIcon, LogOutIcon, MenuSquareIcon } from 'lucide-react'
 import Link from 'next/link'
-import { Context } from '@/app/state'
+import { Context, Dispatch } from '@/app/state'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
@@ -12,12 +12,13 @@ function Menu() {
     const transition = useTransition()
     const router = useRouter();
     const path = usePathname()
-
+    const dispatch = useContext(Dispatch)
     const logout = ()=> {
+      dispatch({type: "delete", payload: {}}),
       fetch('/api/logout').then((res)=> res.json()
-      ).then((val)=> console.log(val.status)
+      ).then((val)=> transition[1](()=> router.push("/auth/login"))
       )
-      transition[1](()=> router.replace("/auth/login"))
+      
   }
 
     const {user, account} = useContext(Context)

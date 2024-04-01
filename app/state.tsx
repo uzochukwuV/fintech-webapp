@@ -39,6 +39,9 @@ function reducer(state:{user:string, account:string}, action: {type:string, payl
     case 'update':
       return {...state, ...action.payload}
       break;
+
+    case "delete": 
+        return {...al}
   
     default:
       return al

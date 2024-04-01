@@ -1,18 +1,26 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 
 import { SideBar } from "./side-bar";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { Context } from "@/app/state";
+
 
 export const MenuBar = ({params}: { params?: { user?: any } }) => {
   const [id, setId] = useState(null);
   const router = useRouter();
   const path = usePathname()
+
+  const {user,account} = useContext(Context)
+
+
+  console.log(user, account);
+  
 
   useEffect(() => {
     
@@ -81,32 +89,32 @@ export const MenuBar = ({params}: { params?: { user?: any } }) => {
           )}
         >
           <div
-            className={cn(" hover:text-green-600  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
           >
             Home
           </div>
           <div
-            className={cn(" hover:text-green-600  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
           >
             Services
           </div>
           <div
-            className={cn(" hover:text-green-600  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
           >
             About
           </div>
           <div
-            className={cn(" hover:text-green-600  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
           >
             Products
           </div>
           <div
-            className={cn(" hover:text-green-600  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
           >
             Testimony
           </div>
           <div
-            className={cn(" hover:text-green-600  rounded px-2 md:px-4 py-2")}
+            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2")}
           >
             FAQ
           </div>
