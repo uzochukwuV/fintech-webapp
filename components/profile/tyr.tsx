@@ -2,100 +2,71 @@
 
 import { CameraIcon as PhotoIcon, UserCircleIcon } from "lucide-react";
 import { Input } from "../ui/input";
-import { useContext } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Context } from "@/app/state";
 import ChangePassword from "./changePassword";
 import { z } from "zod";
-import { Form, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
+// import {  useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import {
+//     Form,
+//     FormControl,
+//     FormDescription,
+//     FormField,
+//     FormItem,
+//     FormLabel,
+//     FormMessage,
+//   } from "../ui/form";
 
 // import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 
-export const formSchema = z.object({
-  username: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-  about: z.string().min(0).max(100, {
-    message: "must not be more than 100 characters",
-  }),
-  email: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 50 characters",
-    })
-    .max(50),
-  firstName: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-  lastname: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-  country: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-  street: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-  city: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-  state: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-  zip: z
-    .string()
-    .min(2, {
-      message: "mustbe more than 20 characters",
-    })
-    .max(20),
-});
+
+interface Profile {
+    username: string,
+    about: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    country: string,
+    state: string,
+    zip: string,
+    city: string,
+    street: string,
+}
+
+
 
 export default function Trx() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      firstName: "",
-      lastname: "",
-      city: "",
-      state: "",
-      zip: "",
-      about: "",
-      street: "",
-    },
-  });
   const { user, account } = useContext(Context);
+  const [profile, setProfile] = useState<Profile>({username: user.username, email: user.email, city: user.country|| "", country: "", state:"", zip: "", firstName: user.firstName, lastName: user.lastName, about: "", street: ""})
+
+  const OnChangeHandler = (e: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=> {
+    e.preventDefault()
+    console.log(profile);
+    
+
+    const {value, name} = e.target
+
+    setProfile({...profile, [name]: value})
+  }
+
+  const OnSubmitHandler = (e: FormEvent<HTMLFormElement>)=> {
+    e.preventDefault()
+
+    console.log(profile);
+    
+  }
   return (
     <section>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(() => {})} method="POST">
+      
+        <form  method="POST" onSubmit={OnSubmitHandler}>
           <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-4">
+                    
                   <label
                     htmlFor="username"
                     className="block text-sm font-medium leading-6 text-gray-900"
@@ -106,11 +77,12 @@ export default function Trx() {
                     <div className="flex rounded-md shadow-sm ring-1  ring-gray-300    sm:max-w-md">
                       {/* <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span> */}
                       <Input
+                      onChange={OnChangeHandler}
                         type="text"
                         name="username"
                         id="username"
                         autoComplete="username"
-                        defaultValue={user.username as string}
+                        value={profile.username}
                         className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-500 focus:ring-0 focus:outline-none focus:border-0 sm:text-sm sm:leading-6"
                         placeholder="janesmith"
                       />
@@ -130,8 +102,10 @@ export default function Trx() {
                       id="about"
                       name="about"
                       rows={3}
+                      value={profile.about}
+                      onChange={OnChangeHandler}
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      defaultValue={user.userType}
+                     
                     />
                   </div>
                   <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -167,7 +141,8 @@ export default function Trx() {
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>Upload a file</span>
-                      <Input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                      <Input
+                      onChange={OnChangeHandler} id="file-upload" name="file-upload" type="file" className="sr-only" />
                     </label>
                     <p className="pl-1">or drag and drop</p>
                   </div>
@@ -196,9 +171,11 @@ export default function Trx() {
                   </label>
                   <div className="mt-2">
                     <Input
+                    onChange={OnChangeHandler}
+                    value={profile.firstName}
                       type="text"
                       name="first-name"
-                      defaultValue={user?.firstName as string}
+                      
                       id="first-name"
                       placeholder="Hover man"
                       autoComplete="given-name"
@@ -216,8 +193,9 @@ export default function Trx() {
                   </label>
                   <div className="mt-2">
                     <Input
+                    onChange={OnChangeHandler}
                       type="text"
-                      defaultValue={user?.lastName as string}
+                      value={profile.lastName}
                       name="last-name"
                       id="last-name"
                       autoComplete="family-name"
@@ -235,11 +213,14 @@ export default function Trx() {
                   </label>
                   <div className="mt-2">
                     <Input
+                    onChange={OnChangeHandler}
                       id="email"
+                      value={profile.email}
+                      disabled
                       name="email"
                       type="email"
                       autoComplete="email"
-                      defaultValue={user.email as string}
+                      
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -256,8 +237,9 @@ export default function Trx() {
                     <select
                       id="country"
                       name="country"
+                      value={profile.country}
                       autoComplete="country-name"
-                      defaultValue={user.country as string}
+                    
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option>United States</option>
@@ -276,9 +258,10 @@ export default function Trx() {
                   </label>
                   <div className="mt-2">
                     <Input
+                    onChange={OnChangeHandler}
                       type="text"
                       name="street-address"
-                      defaultValue={user.state as string}
+                      value={profile.street}
                       id="street-address"
                       autoComplete="street-address"
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -295,10 +278,11 @@ export default function Trx() {
                   </label>
                   <div className="mt-2">
                     <Input
+                    onChange={OnChangeHandler}
                       type="text"
                       name="city"
                       id="city"
-                      defaultValue={user.state as string}
+                      value={profile.city}
                       autoComplete="address-level2"
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -314,10 +298,11 @@ export default function Trx() {
                   </label>
                   <div className="mt-2">
                     <Input
+                    onChange={OnChangeHandler}
                       type="text"
                       name="region"
                       id="region"
-                      defaultValue={user.state as string}
+                      value={profile.state}
                       autoComplete="address-level1"
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -333,11 +318,12 @@ export default function Trx() {
                   </label>
                   <div className="mt-2">
                     <Input
+                    onChange={OnChangeHandler}
                       type="text"
                       name="postal-code"
                       id="postal-code"
                       autoComplete="postal-code"
-                      defaultValue={user.state as string}
+                      value={profile.zip}
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -361,7 +347,66 @@ export default function Trx() {
             </button>
           </div>
         </form>
-      </Form>
+     
     </section>
   );
 }
+export const formSchema = z.object({
+    username: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+    about: z.string().min(0).max(100, {
+      message: "must not be more than 100 characters",
+    }),
+    email: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 50 characters",
+      })
+      .max(50),
+    firstName: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+    lastname: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+    country: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+    street: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+    city: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+    state: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+    zip: z
+      .string()
+      .min(2, {
+        message: "mustbe more than 20 characters",
+      })
+      .max(20),
+  });

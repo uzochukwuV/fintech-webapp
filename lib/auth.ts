@@ -29,7 +29,7 @@ export async function decrypt(input:string): Promise<any> {
 }
 
 
-async function bencrypt(params:any) {
+export async function bencrypt(params:any) {
     const encrypted = await bcrypt.hash(params, 10);
     return encrypted;
 }

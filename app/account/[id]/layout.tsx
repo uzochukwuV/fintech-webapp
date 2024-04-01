@@ -3,6 +3,8 @@
 import { checkId } from "@/lib/auth";
 import React from "react";
 import Error from "./error";
+import { getAccount, getUser } from "@/lib/helpers";
+import IsAuthenticated from "./isAuthenticated";
 
 
 
@@ -19,8 +21,8 @@ export default async function Layout({
   }){
 
     
-    console.log(params);
-    console.log('Layout 2 mounted');
+    const {user} = await getUser(params.id!)
+    const {account}= await getAccount(user._id)
     
     try {
         const isUser = await checkId(params.id)
@@ -38,7 +40,7 @@ export default async function Layout({
     return (
        
          <>
-      
+        <IsAuthenticated params={{user, account}} />
         {children}
         </>
       
