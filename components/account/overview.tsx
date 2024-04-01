@@ -77,7 +77,7 @@ function Overview({ user, account }: { user: any; account: any }) {
             <div>
               <p>Welcome !</p>
               <div className=" sm:space-x-6 py-1">
-              <h2 className=" font-medium inline-block text-3xl antialiased pr-2">{context.user.firstName} {context.user.lastName} Karen Ronan Maya</h2>
+              <h2 className=" font-medium inline-block text-3xl antialiased pr-2">{context.user.firstName} {context.user.lastName}</h2>
               <Button>My Plans <ArrowDownRight></ArrowDownRight> </Button>
               </div>
               <p className=" text-slate-500 pt-2">At a glance summary of your investment account. Have fun!</p>

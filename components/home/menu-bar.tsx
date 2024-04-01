@@ -9,21 +9,21 @@ import { SideBar } from "./side-bar";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-export const MenuBar = (params?: { params?: { id: any } }) => {
+export const MenuBar = ({params}: { params?: { user?: any } }) => {
   const [id, setId] = useState(null);
   const router = useRouter();
   const path = usePathname()
 
   useEffect(() => {
     
-    if (params?.params?.id?.user) {
-      setId(params.params.id.user._id);
+    if (params?.user && params.user._id) {
+      setId(params.user._id);
     }
 
     if(window?.document){
       changeNav()
     }
-  });
+  }, [id, params]);
 
   
 
@@ -122,31 +122,34 @@ export const MenuBar = (params?: { params?: { id: any } }) => {
           {id ? (
             <div>
               <div>
-                <Button
-                  onClick={() => router.push(`/account/${id}`)}
-                  className=" bg-green-600"
+                <Link
+                  href={`/account/${id}`}
+                  prefetch
+                  className=" bg-green-600 w-20 py-3 hover:bg-green-400 px-4 text-sm rounded-md"
                 >
                   Dashboard
-                </Button>
+                </Link>
               </div>
             </div>
           ) : (
             <div className="flex gap-2">
               <div>
-                <Button
-                  onClick={() => router.push("/auth/login")}
-                  className="  text-green-800  w-20 "
+                <Link
+                  href={"/auth/login"}
+                  prefetch
+                  className="  text-green-400 bg-transparent  w-20  py-3 hover:bg-green-400 hover:text-white px-4 text-sm rounded-md"
                 >
                   Login
-                </Button>
+                </Link>
               </div>
               <div>
-                <Button
-                  onClick={() => router.push("/auth/register")}
-                  className=" text-green-800 border   w-20"
+                <Link
+                  href={"/auth/register"}
+                  prefetch
+                  className=" text-green-400 border bg-transparent  py-3 hover:bg-green-400 hover:text-white px-4 text-sm rounded-md  w-20"
                 >
                   Sign up
-                </Button>
+                </Link>
               </div>
             </div>
           )}

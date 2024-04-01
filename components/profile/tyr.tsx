@@ -5,12 +5,14 @@ import { CameraIcon as PhotoIcon, UserCircleIcon } from 'lucide-react';
 import { Input } from '../ui/input';
 import { useContext } from 'react';
 import { Context } from '@/app/state';
+import ChangePassword from './changePassword';
 
 // import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 
 export default function Trx() {
     const {user, account} = useContext(Context)
   return (
+    <section className=' flex'>
     <form>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
@@ -246,6 +248,12 @@ export default function Trx() {
           Save
         </button>
       </div>
+
+
+      
     </form>
+
+    <ChangePassword />
+    </section>
   )
 }

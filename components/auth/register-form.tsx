@@ -40,13 +40,13 @@ export const formSchema = z.object({
       message: "mustbe more than 20 characters",
     })
     .max(50),
-  firstname: z
+  firstName: z
     .string()
     .min(2, {
       message: "mustbe more than 20 characters",
     })
     .max(20),
-  lastname: z
+  lastName: z
     .string()
     .min(2, {
       message: "mustbe more than 20 characters",
@@ -80,8 +80,8 @@ export default function RegisterForm() {
       password: "",
       email: "",
       confirmpassword: "",
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
     },
   });
   const [isLoading, setIsLoading]= useState(false)
@@ -125,7 +125,7 @@ export default function RegisterForm() {
         <div className="flex gap-4 flex-col sm:flex-row">
           <FormField
             control={form.control}
-            name="firstname"
+            name="firstName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>First Name</FormLabel>
@@ -139,7 +139,7 @@ export default function RegisterForm() {
           />
           <FormField
             control={form.control}
-            name="lastname"
+            name="lastName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Last Name</FormLabel>

@@ -1,9 +1,9 @@
 
-
 import React, { useContext } from "react";
 import { cookies } from "next/headers";
-import Router from "next/router";
-import { useRouter } from "next/navigation";
+import CheckUser from "./checkUser";
+
+
 
 
 export default async function Layout({
@@ -13,23 +13,14 @@ export default async function Layout({
     children: React.ReactNode;
     
   }){
-    const router = useRouter()
-    const cookie = cookies().get('session')
+    const cookie = cookies().get('session')?.value
     console.log("cookie is", cookie);
 
-    if(cookie){
-        router.push('/')
-    }
-    
-    
-
-    
-    
     
     return (
        
          <div>
-      
+            <CheckUser params={{session: cookie}} />
         {children}
         </div>
       
