@@ -63,7 +63,7 @@ function Profile() {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="first-name"
-                    className="block capitalize text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block  text-sm font-medium leading-6 text-gray-500 capitalize"
                   >
                     First name
                   </label>
