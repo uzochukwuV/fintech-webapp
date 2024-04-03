@@ -27,10 +27,11 @@ import { Context, Dispatch } from "@/app/state";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import Menu from "./menu";
 import { logout } from "@/lib/auth";
+import { Deposit } from "./deposit";
 
 
-function Overview({ user, account }: { user: any; account: any }) {
-  const context = useContext(Context)
+function Overview() {
+  const { user, account } = useContext(Context)
   const dispatch = useContext(Dispatch)
 
   
@@ -78,8 +79,9 @@ function Overview({ user, account }: { user: any; account: any }) {
             <div>
               <p>Welcome !</p>
               <div className=" sm:space-x-6 py-1">
-              <h2 className=" font-medium inline-block text-3xl antialiased pr-2">{context.user.firstName} {context.user.lastName}</h2>
+              <h2 className=" font-medium inline-block text-3xl antialiased pr-2">{user.firstName} {user.lastName}</h2>
               <Button>My Plans <ArrowDownRight></ArrowDownRight> </Button>
+              <Deposit />
               </div>
               <p className=" text-slate-500 pt-2">At a glance summary of your investment account. Have fun!</p>
             </div>
@@ -110,7 +112,7 @@ function Overview({ user, account }: { user: any; account: any }) {
             </div>
             <div className=" py-2 ">
               <p className="font-semibold text-3xl">
-                $<span>{context.account.balance.toFixed(2).toString()}</span>
+                $<span>{account.balance.toFixed(2).toString()}</span>
               </p>
               <p className=" text-gray-400 text-xs "> <span className=" text-green-400">+20% </span> from last month</p>
             </div>
@@ -127,7 +129,7 @@ function Overview({ user, account }: { user: any; account: any }) {
             </div>
             <div className=" py-2 ">
               <p className="font-bold text-3xl">
-                $<span>{context.account.tradeBalance.toFixed(2).toString()}</span>
+                $<span>{account.tradeBalance.toFixed(2).toString()}</span>
               </p>
               <p className=" text-gray-400 text-xs"><span className=" text-green-400">+2.40% </span> from last month</p>
             </div>
@@ -144,7 +146,7 @@ function Overview({ user, account }: { user: any; account: any }) {
             </div>
             <div className=" py-2 ">
               <p className="font-bold text-3xl">
-                $<span>{context.account?.bonus?.toFixed(2).toString()}</span>
+                $<span>{account?.bonus?.toFixed(2).toString()}</span>
               </p>
               <p className=" text-gray-400 text-xs"><span className=" text-green-400">+3000% </span> from last month</p>
             </div>
@@ -161,7 +163,7 @@ function Overview({ user, account }: { user: any; account: any }) {
             </div>
             <div className=" py-2 ">
               <p className="font-bold text-3xl">
-                $<span>{context.account?.referralBonus?.toFixed(2).toString()}</span>
+                $<span>{account?.referralBonus?.toFixed(2).toString()}</span>
               </p>
               <p className=" text-gray-400 text-xs"><span className=" text-green-400">0% </span> from last month</p>
             </div>

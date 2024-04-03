@@ -1,30 +1,96 @@
+"use client"
+
+import { Copy } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-  } from "@/components/ui/dialog"
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { MouseEventHandler } from "react"
 
-
-
-  export default function Deposit() {
-    return (
-        <>
-        <Dialog>
-  <DialogTrigger>Open</DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. This will permanently delete your account
-        and remove your data from our servers.
-      </DialogDescription>
-    </DialogHeader>
-  </DialogContent>
-</Dialog>
-
-        </>
-    )
+export function Deposit() {
+  const handleClick = (e: string)=> {
+    const clipboard = new Clipboard()
+    clipboard.writeText(e)
   }
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline" className=" bg-slate-50 border-0">Deposit</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Choose your preferred method</DialogTitle>
+          <DialogDescription>
+            Deposit direct to the address (Bep20)
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-">
+              Your USDT Address (Most Preferrable)
+            </Label>
+            <Input
+              id="link"
+              defaultValue="https://ui.shadcn.com/docs/installation"
+              readOnly
+            />
+          </div>
+          <Button type="submit" size="sm" className="px-3" onClick={()=>handleClick("USDT")}>
+            <span className="sr-only">Copy</span>
+            <Copy className="h-4 w-4" />
+          </Button>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-">
+              Your BTC Address
+            </Label>
+            <Input
+              id="link"
+              defaultValue="https://ui.shadcn.com/docs/installation"
+              readOnly
+            />
+          </div>
+          <Button type="submit" size="sm" className="px-3" onClick={()=>handleClick("BTC")}>
+            <span className="sr-only">Copy</span>
+            <Copy className="h-4 w-4" />
+          </Button>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-">
+              Your Eth Address
+            </Label>
+            <Input
+              id="link"
+              defaultValue="https://ui.shadcn.com/docs/installation"
+              readOnly
+            />
+          </div>
+          <Button type="submit" size="sm" className="px-3" onClick={()=>handleClick("ETH")}>
+            <span className="sr-only">Copy</span>
+            <Copy className="h-4 w-4" />
+          </Button>
+        </div>
+        
+        <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <Button type="button" variant="secondary" >
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}

@@ -1,18 +1,28 @@
 
-
+"use client"
+import { Context, Dispatch } from '@/app/state';
 import Overview from '@/components/account/overview';
+import { useContext, useEffect } from 'react';
 
-import { getAccount, getUser } from '@/lib/helpers';
+
 
 
 
 
 async function Page({ params }: { params: { id: string } }) {
-  const {user} = await getUser(params.id!)
-  const {account}= await getAccount(user._id)
-
-  console.log(user.toJSON());
-  console.log(account.toJSON());
+  const dispatch = useContext(Dispatch)
+  const {user, account} = useContext(Context)
+  
+  useEffect(() => {
+    let value;
+    const response = fetch("/api/user/get", {
+      method: "POST",
+      body: JSON.stringify({id: params.id})
+    }).then((res)=> res.json())
+    response.then((val)=> dispatch({type: "update", payload: {...val}})
+    )
+    
+  }, [params.id])
   
   
   
@@ -22,7 +32,9 @@ async function Page({ params }: { params: { id: string } }) {
 
        
         <div>
-        <Overview user={user.toJSON()}  account={account.toJSON()} />
+        {
+          user._id && <Overview />
+        }
         </div>
 
     </>

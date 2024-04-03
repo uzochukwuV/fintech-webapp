@@ -1,15 +1,16 @@
 "use client"
 
 import React, { useState } from 'react'
-import Trx from './tyr'
+import EditProfile from './edit-profile'
 import NotificationSetting from './notifications'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import ChangePassword from './changePassword'
+import Profile from './view-profile'
 
 function Personal() {
     const [step, setStep] = useState(0)
-    const items = [<Trx key={1} />,   <Trx key={2} /> , <NotificationSetting key={3} />, <ChangePassword />  ]
+    const items = [<Profile key={1} />,   <Profile key={2} /> , <NotificationSetting key={3} />, <ChangePassword />  ]
 
     let current = items[step]
   return (
@@ -47,7 +48,7 @@ function Personal() {
                 <p>Damian James Lane</p>
             </div>
         </div> */}
-        {current}
+        {items[step]}
     </section>
   )
 }

@@ -2,10 +2,13 @@
 
 import { CameraIcon as PhotoIcon, UserCircleIcon } from "lucide-react";
 import { Input } from "../ui/input";
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { Context } from "@/app/state";
-import ChangePassword from "./changePassword";
+import { ChangeEvent, FormEvent, useContext, useEffect, useLayoutEffect, useState } from "react";
+import { Context, Dispatch } from "@/app/state";
+
 import { z } from "zod";
+import { useToast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
+import { UserInterface } from "@/utils/constants";
 
 // import {  useForm } from "react-hook-form";
 // import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +27,6 @@ import { z } from "zod";
 
 interface Profile {
     username: string,
-    about: string,
     email: string,
     firstName: string,
     lastName: string,
@@ -32,18 +34,19 @@ interface Profile {
     state: string,
     zip: string,
     city: string,
-    street: string,
 }
 
 
 
-export default function Trx() {
+export default function EditProfile() {
   const { user, account } = useContext(Context);
-  const [profile, setProfile] = useState<Profile>({username: user.username, email: user.email, city: user.country|| "", country: "", state:"", zip: "", firstName: user.firstName, lastName: user.lastName, about: "", street: ""})
-
+  
+  const [profile, setProfile] = useState<Profile>({username: '', email: '', city: "", country: '', state:'', zip: "", firstName: '', lastName: ''})
+  const {toast} = useToast()
+  const dispatch = useContext(Dispatch)
+  const router = useRouter()
   const OnChangeHandler = (e: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>)=> {
     e.preventDefault()
-    console.log(profile);
     
 
     const {value, name} = e.target
@@ -51,18 +54,42 @@ export default function Trx() {
     setProfile({...profile, [name]: value})
   }
 
+  
+
+  
+
   const OnSubmitHandler = (e: FormEvent<HTMLFormElement>)=> {
     e.preventDefault()
-
     console.log(profile);
     
-  }
+    if(true){
+        fetch("/api/user/update-profile", {
+            method: "POST",
+            body: JSON.stringify({id: user?._id!, ...profile})
+        }).then((res)=> res.json()
+        ).then((val)=> {
+          console.log(val);
+          
+          dispatch({type: "update", payload: val as UserInterface})
+          
+          toast({
+            title: "Profile Update Sucessful",
+          })
+
+          router.back()
+          
+        }
+        )
+        .catch((e)=> console.log(e)
+        )
+    }
+}
   return (
-    <section>
-      
+    <section className=" max-w-[800px] mx-auto px-4 sm:px-6 md:px-10">
+        <h1 className=" text-3xl font-medium text-black mt-4">Edit Profile </h1>
         <form  method="POST" onSubmit={OnSubmitHandler}>
           <div className="space-y-12">
-            <div className="border-b border-gray-900/10 pb-12">
+            <div className="">
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-4">
@@ -84,34 +111,13 @@ export default function Trx() {
                         autoComplete="username"
                         value={profile.username}
                         className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-500 focus:ring-0 focus:outline-none focus:border-0 sm:text-sm sm:leading-6"
-                        placeholder="janesmith"
+                        
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="col-span-full">
-                  <label
-                    htmlFor="about"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    About
-                  </label>
-                  <div className="mt-2">
-                    <textarea
-                      id="about"
-                      name="about"
-                      rows={3}
-                      value={profile.about}
-                      onChange={OnChangeHandler}
-                      className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     
-                    />
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-gray-600">
-                    Write a few sentences about yourself.
-                  </p>
-                </div>
+                
 
                 {/* <div className="col-span-full">
               <label htmlFor="photo" className="block text-sm font-medium leading-6 text-gray-900">
@@ -154,12 +160,7 @@ export default function Trx() {
             </div>
 
             <div className="border-b border-gray-900/10 pb-12">
-              <h2 className="text-base font-semibold leading-7 text-gray-900">
-                Personal Information
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
-                Use a permanent address where you can receive mail.
-              </p>
+              
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
@@ -174,10 +175,10 @@ export default function Trx() {
                     onChange={OnChangeHandler}
                     value={profile.firstName}
                       type="text"
-                      name="first-name"
+                      name="firstName"
                       
                       id="first-name"
-                      placeholder="Hover man"
+                      
                       autoComplete="given-name"
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -196,7 +197,7 @@ export default function Trx() {
                     onChange={OnChangeHandler}
                       type="text"
                       value={profile.lastName}
-                      name="last-name"
+                      name="lastName"
                       id="last-name"
                       autoComplete="family-name"
                       className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -249,25 +250,7 @@ export default function Trx() {
                   </div>
                 </div>
 
-                <div className="col-span-full">
-                  <label
-                    htmlFor="street-address"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Street address
-                  </label>
-                  <div className="mt-2">
-                    <Input
-                    onChange={OnChangeHandler}
-                      type="text"
-                      name="street-address"
-                      value={profile.street}
-                      id="street-address"
-                      autoComplete="street-address"
-                      className="block w-full rounded-md bg-transparent border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
+                
 
                 <div className="sm:col-span-2 sm:col-start-1">
                   <label
@@ -300,7 +283,7 @@ export default function Trx() {
                     <Input
                     onChange={OnChangeHandler}
                       type="text"
-                      name="region"
+                      name="state"
                       id="region"
                       value={profile.state}
                       autoComplete="address-level1"
@@ -320,7 +303,7 @@ export default function Trx() {
                     <Input
                     onChange={OnChangeHandler}
                       type="text"
-                      name="postal-code"
+                      name="zip"
                       id="postal-code"
                       autoComplete="postal-code"
                       value={profile.zip}

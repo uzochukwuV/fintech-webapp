@@ -65,7 +65,7 @@ function Menu() {
 
           <div>
             <p className=" text-xs">Verified</p>
-            <p>{user.username}</p>
+            <p>{user?.username}</p>
           </div>
 
 

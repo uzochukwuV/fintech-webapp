@@ -2,6 +2,7 @@
 
 import { Dispatch } from '@/app/state'
 import Menu from '@/components/account/menu'
+import EditProfile from '@/components/profile/edit-profile'
 import Personal from '@/components/profile/personal'
 import React, { useContext, useEffect } from 'react'
 
@@ -21,7 +22,7 @@ import React, { useContext, useEffect } from 'react'
   return (
     <div>
         <Menu />
-        <Personal />
+        <EditProfile />
     </div>
   )
 }
