@@ -14,7 +14,7 @@ function Profile() {
         <h1 className=" text-3xl font-medium text-black mt-4">Edit Profile </h1>
 
           <div className="space-y-12">
-            <div className="border-b border-gray-900/10 pb-12 capitalize antialiased">
+            <div className="border-b border-gray-900/10 pb-12 capitalize text-base  antialiased">
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-4">
@@ -25,7 +25,7 @@ function Profile() {
                   >
                     Username
                   </label>
-                  <div className="mt-2 capitalize">
+                  <div className="mt-2 capitalize text-base ">
                     {user.username}
                   </div>
                 </div>
@@ -52,7 +52,7 @@ function Profile() {
             </div>
 
             <div className="border-b border-gray-900/10 pb-12">
-              <h2 className="text-base font-semibold leading-7 text-gray-900">
+              <h2 className="text-base ld leading-7 text-gray-900">
                 Personal Information
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -63,7 +63,7 @@ function Profile() {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="first-name"
-                    className="block  text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block   font-medium leading-6 text-gray-500 capitalize text-base "
                   >
                     First name
                   </label>
@@ -75,7 +75,7 @@ function Profile() {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="last-name"
-                    className="block text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block  font-medium leading-6 text-gray-500 capitalize text-base "
                   >
                     Last name
                   </label>
@@ -87,7 +87,7 @@ function Profile() {
                 <div className="sm:col-span-4">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block  font-medium leading-6 text-gray-500 capitalize text-base "
                   >
                     Email address
                   </label>
@@ -99,7 +99,7 @@ function Profile() {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="country"
-                    className="block text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block  font-medium leading-6 text-gray-500 capitalize text-base "
                   >
                     Country
                   </label>
@@ -113,7 +113,7 @@ function Profile() {
                 <div className="sm:col-span-2 sm:col-start-1">
                   <label
                     htmlFor="city"
-                    className="block text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block  font-medium leading-6 text-gray-500 capitalize text-base "
                   >
                     City
                   </label>
@@ -125,7 +125,7 @@ function Profile() {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="region"
-                    className="block text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block  font-medium leading-6 text-gray-500 capitalize text-base "
                   >
                     State / Province
                   </label>
@@ -137,7 +137,7 @@ function Profile() {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="postal-code"
-                    className="block text-sm font-medium leading-6 text-gray-500 capitalize"
+                    className="block  font-medium leading-6 text-gray-500 capitalize text-base "
                   >
                     ZIP / Postal code
                   </label>

@@ -10,7 +10,7 @@ import Profile from './view-profile'
 
 function Personal() {
     const [step, setStep] = useState(0)
-    const items = [<Profile key={1} />,   <Profile key={2} /> , <NotificationSetting key={3} />, <ChangePassword />  ]
+    const items = [<Profile key={1} />,   <Profile key={2} /> , <NotificationSetting key={3} />, <ChangePassword key={4} />  ]
 
     let current = items[step]
   return (
