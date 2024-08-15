@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -12,10 +12,7 @@ import {
   BellDotIcon,
 
   GiftIcon,
-  LineChartIcon,
-  LogOut,
-  LogOutIcon,
-  MenuSquareIcon,
+
 
   UserCheck,
   Users,
@@ -26,31 +23,51 @@ import { useRouter } from "next/navigation";
 import { Context, Dispatch } from "@/app/state";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import Menu from "./menu";
-import { logout } from "@/lib/auth";
-import { Deposit } from "./deposit";
 
 
-function Overview() {
+
+function Overview({id}: {id: string}) {
   const { user, account } = useContext(Context)
   const dispatch = useContext(Dispatch)
 
   
-  
-  React.useEffect(() => {
-
-    
-    
-    return dispatch({type: 'update', payload: {user, account}})
-    
-  }, [])
-  
  
   const router = useRouter()
   
+  useMemo(() =>  
+    fetch("/api/user/get", {
+     method: 'POST',
+    
+     body: JSON.stringify({id: id})
+   }).then((res)=> res.json()
+   ).then((value)=> dispatch({type: 'update', payload: value})), [id])
+
+   if(!user){
+    return <>
+    <section className="p-2 sm:p-4 md:p-8 lg:p-12 animate-pulse">
+  <div className="greetings flex justify-between gap-10 px-6 py-10  flex-col md:flex-row">
+    <div className="space-y-4 min-w-[300px]">
+      <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+      <div className="h-6 bg-gray-200 rounded w-1/2"></div>
+      <div className="h-4 bg-gray-200 rounded w-full"></div>
+    </div>
+    <div className="min-w-[250px] h-40 bg-gray-200 rounded"></div>
+  </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
+    <div className="p-6 bg-gray-200 shadow-sm rounded-xl"></div>
+    <div className="p-6 bg-gray-200 shadow-sm rounded-xl"></div>
+    <div className="p-6 bg-gray-200 shadow-sm rounded-xl"></div>
+    <div className="p-6 bg-gray-200 shadow-sm rounded-xl"></div>
+  </div>
+</section>
+    </>
+   }
+
 
 
   return (
-    <>
+  <>
+   <>
       <Menu  />
       {/*  */}
       {/* <div className="flex-1 w-full px-6 py-4">
@@ -77,11 +94,11 @@ function Overview() {
         <section className=" p-2 sm:p-4 md:p-8 lg:p-12">
           <div className="greetings transition-all flex justify-between gap-10 px-6 py-10 md:pt-0 md:px-0 flex-col md:flex-row text-black">
             <div>
-              <p>Welcome !</p>
+              <p>WELCOME !</p>
               <div className=" sm:space-x-6 py-1">
-              <h2 className=" font-medium inline-block text-3xl antialiased pr-2">{user.firstName} {user.lastName}</h2>
-              <Button>My Plans <ArrowDownRight></ArrowDownRight> </Button>
-              <Deposit />
+              <h2 className=" font-semibold inline-block text-5xl antialiased pr-2">{user.firstName}</h2>
+              
+              
               </div>
               <p className=" text-slate-500 pt-2">At a glance summary of your investment account. Have fun!</p>
             </div>
@@ -90,12 +107,12 @@ function Overview() {
                   
                   {/* <CardHeader>My active PLans</CardHeader> */}
                   <CardDescription> My active PLans</CardDescription>
-                  <CardTitle className=" text-green-600 py-2 text-lg font-medium"> Silver 4.56% for 21 Days</CardTitle>
+                  <CardTitle className=" text-blue-600 py-2 text-lg font-medium">nil</CardTitle>
                   <CardDescription className="flex gap-4">
                     <ArrowRightIcon />
                     Check Details
                   </CardDescription>
-                  <div className=" absolute bottom-0 right-1 left-1 border-b-2 border-b-green-400 "></div>
+                  <div className=" absolute bottom-0 right-1 left-1 border-b-2 border-b-blue-400 "></div>
                 </Card>
             </div>
           </div>
@@ -114,7 +131,7 @@ function Overview() {
               <p className="font-semibold text-3xl">
                 $<span>{account.balance.toFixed(2).toString()}</span>
               </p>
-              <p className=" text-gray-400 text-xs "> <span className=" text-green-400">+20% </span> from last month</p>
+              <p className=" text-gray-400 text-xs "> <span className=" text-blue-400">+20% </span> from last month</p>
             </div>
           </div>
 
@@ -131,7 +148,7 @@ function Overview() {
               <p className="font-bold text-3xl">
                 $<span>{account.tradeBalance.toFixed(2).toString()}</span>
               </p>
-              <p className=" text-gray-400 text-xs"><span className=" text-green-400">+2.40% </span> from last month</p>
+              <p className=" text-gray-400 text-xs"><span className=" text-blue-400">+2.40% </span> from last month</p>
             </div>
           </div>
 
@@ -148,7 +165,7 @@ function Overview() {
               <p className="font-bold text-3xl">
                 $<span>{account?.bonus?.toFixed(2).toString()}</span>
               </p>
-              <p className=" text-gray-400 text-xs"><span className=" text-green-400">+3000% </span> from last month</p>
+              <p className=" text-gray-400 text-xs"><span className=" text-blue-400">+3000% </span> from last month</p>
             </div>
           </div>
 
@@ -165,7 +182,7 @@ function Overview() {
               <p className="font-bold text-3xl">
                 $<span>{account?.referralBonus?.toFixed(2).toString()}</span>
               </p>
-              <p className=" text-gray-400 text-xs"><span className=" text-green-400">0% </span> from last month</p>
+              <p className=" text-gray-400 text-xs"><span className=" text-blue-400">0% </span> from last month</p>
             </div>
           </div>
         </div>
@@ -175,6 +192,7 @@ function Overview() {
 
         </>
    
+  </>
   );
 }
 
@@ -190,31 +208,31 @@ function BalanceOverview() {
       <div className="balance min-w-[300px] flex-1 p-6 bg-white h-[75vh] flex flex-col ">
         <div className=" h-20 border-b-2">
           <p className=" text-slate-500">Balance in Account</p>
-          <p className=" text-2xl text-black ">12,349.90</p>
+          <p className=" text-2xl text-black ">{account.balance + account.bonus}</p>
         </div>
         <div className=" pt-2">
           <div className="flex justify-between text-slate-700 py-2">
             <p>Available Funds</p>
-            <p>105.4</p>
+            <p>{account.balance}</p>
           </div>
           <div className="flex justify-between border-b text-slate-700 py-2">
             <p>Invested Funds</p>
-            <p>1050.4</p>
+            <p>{account.tradeBalance}</p>
           </div>
           <div className="flex justify-between text-slate-700 py-2">
             <p>Total Funds</p>
-            <p>1252.4</p>
+            <p>{account.balance + account.bonus+ account.tradeBalance}</p>
           </div>
         </div>
         {
           user._id ? (
             <div className=" flex-1 mt-10 space-y-2 flex flex-col justify-end items-start text-end">
-          <Button className=" w-full text-sm bg-green-400 ">Withdraw Funds</Button>
+          <Button className=" w-full text-sm bg-blue-400 ">Withdraw Funds</Button>
           <Button className=" w-full text-sm">Deposit Funds</Button>
         </div>
           ): (
             <div className=" flex-1 mt-10 space-y-2 flex flex-col justify-end items-start text-end">
-          <Button className=" w-full text-sm bg-green-400 ">Withdraw Funds</Button>
+          <Button className=" w-full text-sm bg-blue-400 ">Withdraw Funds</Button>
           <Button className=" w-full text-sm">Deposit Funds</Button>
         </div>
           )
@@ -223,35 +241,35 @@ function BalanceOverview() {
       <div className="balance min-w-[300px] flex-1 p-6 bg-white h-[75vh] flex flex-col ">
         <div className=" h-20 border-b-2">
           <p className=" text-slate-500">This Months Profit </p>
-          <p className=" text-2xl text-black ">129.90</p>
+          <p className=" text-2xl text-black ">0.00</p>
         </div>
         <div className=" pt-2">
           <div className="flex justify-between text-slate-700 py-2">
             <p>Profit</p>
-            <p>105.4</p>
+            <p>0.00</p>
           </div>
           <div className="flex justify-between text-slate-700 py-2">
             <p>Referrals </p>
-            <p>105.4</p>
+            <p>0</p>
           </div>
           <div className="flex justify-between border-b text-slate-700 py-2">
             <p>Referral Rewards </p>
-            <p>1050.4</p>
+            <p>0.00</p>
           </div>
           <div className="flex justify-between text-slate-700 py-2">
             <p>Total Funds</p>
-            <p>1252.4</p>
+            <p>0.00</p>
           </div>
         </div>
         {
           user._id ? (
             <div className=" flex-1 mt-10 space-y-2 flex flex-col justify-end items-start text-end">
-          <Button className=" w-full text-sm bg-green-400 "  onClick={()=> router.push(`/account/${user._id}/invest`)}>Invest and Earn</Button>
+          <Button className=" w-full text-sm bg-blue-400 "  onClick={()=> router.push(`/account/${user._id}/invest`)}>Invest and Earn</Button>
           <Button className=" w-full text-sm text-slate-500">Earn up to $25  <span className="ps-2 text-black"> Refer Friends</span> </Button>
         </div>
           ): (
             <div className=" flex-1 mt-10 space-y-2 flex flex-col justify-end items-start text-end">
-          <Button className=" w-full text-sm bg-green-400 " >Invest and Earn</Button>
+          <Button className=" w-full text-sm bg-blue-400 " >Invest and Earn</Button>
           <Button className=" w-full text-sm text-slate-500">Earn up to $25  <span className="ps-2 text-black"> Refer Friends</span> </Button>
         </div>
           )
@@ -260,24 +278,24 @@ function BalanceOverview() {
       <div className="balance min-w-[300px] flex-1 p-6 bg-white h-[75vh] flex flex-col ">
         <div className=" h-20 border-b-2">
           <p className=" text-slate-500">My Investments</p>
-          <p className=" text-2xl text-black ">349.90    <span>Active</span></p>
+          <p className=" text-2xl text-black ">{account.tradeBalance}    <span>Active</span></p>
         </div>
         <div className=" pt-2">
           <div className="flex justify-between text-slate-700 py-2">
             <p>Available Funds</p>
-            <p>105.4</p>
+            <p>{account.tradeBalance}</p>
           </div>
           <div className="flex justify-between border-b text-slate-700 py-2">
             <p>Invested Funds</p>
-            <p>1050.4</p>
+            <p>{account.tradeBalance}</p>
           </div>
           <div className="flex justify-between text-slate-700 py-2">
             <p>Total Funds</p>
-            <p>1252.4</p>
+            <p>{account.tradeBalance}</p>
           </div>
         </div>
         <div className=" flex-1 mt-10 space-y-2 flex flex-col justify-end items-start text-end">
-          <Button className=" w-full text-sm bg-green-400 "  onClick={()=> router.push(`/account/${user._id}/plans`)}>See all Investments</Button>
+          <Button className=" w-full text-sm bg-blue-400 "  onClick={()=> router.push(`/account/${user._id}/plans`)}>See all Investments</Button>
           <Button className=" w-full text-sm">Chat MD</Button>
         </div>
       </div>

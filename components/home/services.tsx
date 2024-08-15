@@ -1,21 +1,22 @@
+import Image from "next/image";
 import React from "react";
 
 function Service() {
   return (
-    <div id="services" className="h-40 mt-20 md:py-10 overflow-hidden  service mx-auto my-10 px-4 md:px-8 lg:px-12 flex flex-col items-start gap-2 justify-center relative">
-    <video src="/coin.mp4" muted loop autoPlay playsInline className=" absolute top-0 -mt-52 right-0 left-0 bottom-0 -z-10"></video>
-      <div>
-        <h1 className=" leading-none text-2xl sm:text-3xl md:text-4xl lg:text-5xl  text-green-500  font-semibold text-pretty">
+    <div id="services" className="h-72 mt-20 md:py-10 relative bg-gradient-to-b from-transparent   w-full service mx-auto my-10  flex flex-col items-center gap-2 justify-center ">
+    <Image src="/svg/crypto_flowers.svg" alt="Service" width={1000} height={1000} className=" absolute w-full top-0 -z-10 h-full object-contain"></Image>
+      <div className="">
+        <h1 className=" leading-none text-3xl md:text-4xl lg:text-6xl  text-black-800  font-semibold text-pretty">
           We offer the best services in the world
         </h1>
       </div>
       <div>
-        <p className=" text-xs sm:text-sm md:text-base text-slate-200">
+        <p className=" text-sm md:text-xl text-slate-700">
           From global trading strategies to copy trading and lots more.
         </p>
       </div>
       <div>
-        <p className=" hover:text-white  border-b-2 border-spacing-4 border-dashed text-xs sm:text-sm md:text-base text-slate-200">
+        <p className=" hover:text-white text-base  border-b-2 border-spacing-4 border-dashed  sm:text-sm md:text-base text-slate-700">
           Join Now
         </p>
       </div>

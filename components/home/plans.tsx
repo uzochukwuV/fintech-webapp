@@ -13,23 +13,23 @@ function Plans() {
        
          <div className=' md:col-span-6 flex flex-col justify-center gap-8'>
              <div>
-             <h1 className=' leading-none text-4xl lg:text-5xl  text-slate-900 font-semibold text-pretty'>Trade and Earn with your favourite cryptocurrencies</h1>
+             <h1 className=' leading-none text-4xl lg:text-5xl  text-slate-900 font-semibold text-pretty slide-in-from-left-[300px] break-after-page animate-in duration-700'>Trade and Earn with your favourite cryptocurrencies</h1>
              </div>
               <div>
-              <p className='text-base text-slate-800'>Uber for Business is a platform for managing global rides and meals, and local deliveries, for companies of any size.</p>
+              <p className='text-base text-slate-800 slide-in-from-left-[300px] break-after-page animate-in duration-700'>Uber for Business is a platform for managing global rides and meals, and local deliveries, for companies of any size.</p>
               </div>
               <div className='flex gap-16 items-baseline'>
                 <div>
-                <Button className=' capitalize caption-top'>GET STARTED</Button>
+                <Button className=' capitalize caption-top slide-in-from-left-[300px] break-after-page animate-in duration-700'>GET STARTED</Button>
                 </div>
 
                 <div>
-                  <p className=' border-b border-spacing-4 border-dashed'>Check out our plans</p>
+                  <p className=' border-b border-spacing-4 border-dashed text-sm md:text-balance'>Check out our plans</p>
                 </div>
 
               </div>
          </div>
-         <div className='h-[400px] sm:h-[500px] mt-20 md:mt-0 md:h-full  bg bg-black md:col-span-6 bg-auto rounded-md  md:rounded-3xl '>
+         <div className='h-[400px] sm:h-[500px] w-full mt-20 md:mt-0 md:h-full slide-in-from-right-[300px] break-after-page animate-in duration-700  bg bg-black md:col-span-6 bg-auto rounded-md  md:rounded-3xl '>
               {/* <Image src={'/btc.jpg'} alt='' width={500} height={500} className=' w-full aspect-auto bg-cover rounded-3xl ' /> */}
          
          </div>

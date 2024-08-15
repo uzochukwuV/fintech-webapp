@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 const fontSans = FontSans({ subsets: ["latin"],  variable: "--font-sans", });
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
-
+import  QueryProvider from "@/lib/provider";
 
 
 
@@ -25,7 +25,8 @@ export default function RootLayout({
   
   return (
     <html lang="en" suppressHydrationWarning>
-      <body id="body" className={cn("h-screen overflow-y-scroll font-sans  antialiased bg-white", fontSans.variable)}>
+      <body id="body" className={cn("h-screen overflow-y-scroll font-open  antialiased bg-white", fontSans.variable)}>
+        <QueryProvider>
         <Provider>
         <ThemeProvider
         attribute="class"
@@ -38,6 +39,7 @@ export default function RootLayout({
         
         </ThemeProvider>
         </Provider>
+        </QueryProvider>
         <Toaster />
       </body>
     </html>

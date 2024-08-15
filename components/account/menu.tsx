@@ -31,21 +31,27 @@ function Menu() {
         <div className="flex gap-4 items-center ">
           <div className=" px-2 py-2 rounded-sm w-40 md:w-60 flex gap-2 font-medium">
           <div className="flex">
-                  {/* <PersonIcon className=" font-medium" fontWeight={700} /> */}
-                  <p className=" text-3xl">STOXAFX</p>
+                  
+                  <p className=" text-2xl text-transparent font-medium font-man bg-clip-text bg-gradient-to-tr from-blue-700 via-white to-blue-700">Stoxafx</p>
                 </div>
           </div>
-          <div className="md:flex gap-7 *:text-sm uppercase items-center text-base hidden ">
-            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}`&& ' text-green-400'  )}>
+          <div className="md:flex gap-7 *:text-sm font-bold capitalize items-center hidden ">
+            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}`&& ' text-blue-400'  )}>
             <Link href={`/account/${user?._id}`}   >Overview</Link>
             </div>
-            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/plans`&& ' text-green-400'  )}>
+            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/plans`&& ' text-blue-400'  )}>
               <Link href={`/account/${user?._id}/plans`}>Plans</Link>
             </div>
-            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/invest`&& ' text-green-400'  )}>
+            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/profile`&& ' text-blue-400'  )}>
+            <Link href={`/account/${user?._id}/deposit`}>Deposit</Link>
+            </div>
+            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/profile`&& ' text-blue-400'  )}>
+            <Link href={`/account/${user?._id}/withdraw`}>Withdraw</Link>
+            </div>
+            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/invest`&& ' text-blue-400'  )}>
             <Link href={`/account/${user?._id}/invest`}>Invest</Link>
             </div>
-            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/profile`&& ' text-green-400'  )}>
+            <div className={cn(' hover:bg-gray-500 rounded-full p-2', path == `/account/${user?._id}/profile`&& ' text-blue-400'  )}>
             <Link href={`/account/${user?._id}/profile`}>Profile</Link>
             </div>
           </div>
@@ -56,10 +62,10 @@ function Menu() {
         <div className="  justify-end gap-10 w-3/12 items-center hidden md:flex">
           <div className="flex gap-4 items-center">
           
-          <Avatar className=" bg-green-500">
+          <Avatar >
             <AvatarImage src="" />
-            <AvatarFallback className=" bg-green-600">
-              <p>P</p>
+            <AvatarFallback className=" bg-white">
+              <p className=' text-blue-500 font-semibold'>{user.email[0]}</p>
             </AvatarFallback>
           </Avatar>
 
@@ -75,7 +81,7 @@ function Menu() {
               <BellDotIcon color="white" ascent='5' className=' group-hover:animate-bounce duration-500'  />
             </div>
             <div className=" ">
-              <Button className=" bg-transparent rounded-full p-2 hover:bg-gray-500" onClick={logout} ><LogOutIcon color="white" /></Button>
+              <Button className=" bg-transparent rounded-full p-2 hover:bg-gray-500" onClick={logout} >Logout</Button>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ import React, { useContext, useEffect } from 'react'
   }, [params.id])
   return (
     <div>
-        <Menu />
+        
         <EditProfile />
     </div>
   )

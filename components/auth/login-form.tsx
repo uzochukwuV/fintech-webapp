@@ -62,19 +62,15 @@ export default function LoginForm() {
   }, [])
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-
-
-    
-
     setIsLoading(true)
-    console.log(values);
+    
     await login(values).then((user)=> {
-      console.log(user);
+      
       if (user) {
         toast({
           title: "login Successful",
         })
-        router.push(`/account/${user._id}/`)
+         router.push(`/account/${user._id!}/`)
       }
       
     }).catch((e)=> {
@@ -84,7 +80,7 @@ export default function LoginForm() {
       })
       setIsLoading(false)
     })
-    setIsLoading(false)
+    
   }
   return (
     <Form {...form}>
@@ -97,7 +93,7 @@ export default function LoginForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} type="email" className=" bg-gray-50" />
+                  <Input placeholder="" {...field} disabled={isLoading} type="email" className=" bg-gray-50" />
                 </FormControl>
 
                 <FormMessage />
@@ -114,6 +110,7 @@ export default function LoginForm() {
                   <Input
                     placeholder=""
                     {...field}
+                    disabled={isLoading}
                     type="password"
                     autoComplete="new-password"
                     className=" bg-gray-50 text-black"
@@ -126,7 +123,7 @@ export default function LoginForm() {
           />
          
 
-        <Button type="submit" disabled={isLoading}>Log in  {
+        <Button type="submit" className="bg-blue-800" color="blue" disabled={isLoading}>Log in  {
         isLoading && <>
             <LoaderCircleIcon className=" animate-spain" />
             

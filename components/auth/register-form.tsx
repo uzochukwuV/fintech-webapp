@@ -227,7 +227,7 @@ export default function RegisterForm() {
           />
         </div>
 
-        <Button type="submit" disabled={isLoading}>Register</Button>
+        <Button type="submit" color="blue" className="bg-blue-800" disabled={isLoading}>Register</Button>
       </form>
     </Form>
   );

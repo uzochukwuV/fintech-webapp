@@ -40,13 +40,13 @@ export interface UserInterface {
 export interface AccountInterface {
   _id?: string,
   _user: string,
-  balance: Number,
-  tradeBalance: Number,
-  bonus: Number,
+  balance: number,
+  tradeBalance: number,
+  bonus: number,
   plan: string,
   referrals?: string[],
-  referralBonus?: Number,
-  lastGain?: Number,
+  referralBonus?: number,
+  lastGain?: number,
   transactions?: string[],
   type?: 'BASIC'|'PREMIUM'|'LEGEND',
 }

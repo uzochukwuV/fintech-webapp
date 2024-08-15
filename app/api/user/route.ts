@@ -10,7 +10,7 @@ export async function POST(req:Request){
     const user = await User.findById(body.id)
     if (!user) {
         return Response.json({error: "No user found"}, {
-            status:200
+            status:404
         })
     }
     return Response.json(user, {

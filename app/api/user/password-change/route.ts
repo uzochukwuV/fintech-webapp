@@ -13,7 +13,7 @@ export async function POST(req:Request){
     const user = await User.findByIdAndUpdate(body.id, {$set: {password: new_passowrd}})
     if (!user) {
         return Response.json({error: "No user found"}, {
-            status:200
+            status:404
         })
     }
     console.log(user);

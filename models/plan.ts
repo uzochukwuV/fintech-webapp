@@ -1,38 +1,47 @@
 import {Schema, Document, model, models, ObjectId} from 'mongoose'
 import { AccountDocument } from './account';
+import { UserDocument } from './user';
 
 
 export interface PlanDocumnet extends Document {
-    _account: AccountDocument['_id'],
-    balance: Number,
-    date: Date,
+    minDeposit: Number,
     percentage: Number,
-    expires: Date,
-    isActive: Boolean,
+    duration: Number,
+    maxDeposit: Number,
+    type: "SILVER" | "GOLD" | "BASIC" | "DIAMOND",
+    description: String,
+    users: [UserDocument['_id']],
 }
 
 
 const planSchema = new Schema<PlanDocumnet>({
-    _account: {type: Schema.Types.ObjectId, ref: 'Account'},
-    balance: {
-        type: Number,
-        default: 0
-    },
-    date: {
-        type: Date,
-        default: new Date(Date.now())
-    },
+    
     percentage: {
         type: Number,
         default: 30
     },
-    expires: {
-        type: Date,
+    duration: {
+        type: Number,
     },
-    isActive: {
-        type: Boolean,
-        default: true
-    }
+    type: {
+        type: String,
+        default: 'BASIC'
+    },
+    minDeposit: {
+        type: Number,
+    },
+    maxDeposit: {
+        type: Number,
+    }, 
+    description: {
+        type: String,
+    },
+    users: [{
+        
+        type: [{type:Schema.Types.ObjectId, ref:'User' }],
+        default: []
+        
+    }],
 })
 
 

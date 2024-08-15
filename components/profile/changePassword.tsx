@@ -41,9 +41,9 @@ function ChangePassword() {
     }
   return (
     <section className="bg-transparent darkl:bg-gray-900">
-  <div className="flex flex-col items-start justify-start   mx-auto md:h-screen lg:py-0">
+  <div className="flex flex-col items-start justify-start    md:h-screen lg:py-0">
       
-      <div className="w-full p-6 bg-white rounded-lg shadow darkl:border md:mt-0 sm:max-w-md darkl:bg-gray-800 darkl:border-gray-700 sm:p-8">
+      <div className="w-full py-6 bg-white darkl:border md:mt-0 sm:max-w-md darkl:bg-gray-800 darkl:border-gray-700 sm:py-8">
           <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl darkl:text-white">
               Change Password
           </h2>
@@ -68,7 +68,7 @@ function ChangePassword() {
             </button>
             <button
               type="submit"
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md bg-slate-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Save
             </button>

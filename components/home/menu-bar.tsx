@@ -1,80 +1,35 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { Button } from "../ui/button";
+
 
 import { SideBar } from "./side-bar";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { Context } from "@/app/state";
+import { usePathname} from "next/navigation";
 
 
-export const MenuBar = ({params}: { params?: { user?: any } }) => {
-  const [id, setId] = useState(null);
-  const router = useRouter();
-  const path = usePathname()
-
-  const {user,account} = useContext(Context)
-
-
-  console.log(user, account);
+export const MenuBar = ({ cookieId }: { cookieId?: string | null }) => {
   
-
-  useEffect(() => {
-    
-    if (params?.user && params.user._id) {
-      setId(params.user._id);
-    }
-
-    if(window?.document){
-      changeNav()
-    }
-  }, [id, params]);
-
+  const path = usePathname();
+  const id = cookieId;
   
 
 
-  
-  
-
-  function changeNav() {
-    
-    document?.addEventListener("scroll", (e:Event)=> {
-      let nav = document?.getElementById("navigation");
-      
-
-      if(window.scrollY >= 100){
-        nav?.classList.contains("translate-y-0") === true? nav?.classList.remove('translate-y-0'): null;
-        nav?.classList.add('-translate-y-16')
-
-      }else {
-        nav?.classList.contains("-translate-y-16") === true? nav.classList.remove("-translate-y-16"): null;
-        nav?.classList.add('translate-y-0')
-      }
-      
-      
-      // requestAnimationFrame(changeNav)
-  })
-  }
-
-  
-  
   
 
   return (
     <div
-
-     id="navigation"
-
+      id="navigation"
       className={cn(
-        "fixed top-0 right-0 z-10   transition-all duration-300 left-0 px-4 md:px-8 lg:px-12 py-4 ", path.includes("auth")&& ' bg-gray-100 text-black '
+        "fixed top-0 right-0 z-10 bg-black/55   transition-all duration-300 left-0 px-4 md:px-8 lg:px-12 py-2 ",
+        path.includes("auth") && " bg-gray-100 text-black "
       )}
     >
       <div className={cn("flex justify-between")}>
-        <div className={cn("flex md:gap-2 justify-between items-center")}>
-          <Image src={""} alt="" height={50} width={50} />
+        <div className={cn("flex md:gap-2 justify-between items-center ")}>
+          <h1 className=" font-man font-semibold text-3xl text-white/80">Stoxa</h1>
         </div>
         <div
           className={cn(
@@ -88,33 +43,55 @@ export const MenuBar = ({params}: { params?: { user?: any } }) => {
             "gap-0 lg:gap-1 justify-between text-lg md:text-sm lg:text-lg  items-center hidden md:flex"
           )}
         >
-          <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
+          <Link
+            href={"/"}
+            className={cn(
+              " hover:text-blue-600 text-slate-200  rounded px-2 md:px-4 py-2",
+              path.includes("auth") && " text-slate-700"
+            )}
           >
-            <Link href={'/'} >Home</Link>
-          </div>
-          <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2" , path.includes("auth") && " text-slate-700")}
+            <div>Home</div>
+          </Link>
+          <Link
+            href={"/#about"}
+            className={cn(
+              " hover:text-blue-600 text-slate-200  rounded px-2 md:px-4 py-2",
+              path.includes("auth") && " text-slate-700"
+            )}
           >
-            <Link href={'/#about'} >About</Link>
-          </div>
-          <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
+            <div>About</div>
+          </Link>
+          <Link
+            href={"/#services"}
+            className={cn(
+              " hover:text-blue-600 text-slate-200  rounded px-2 md:px-4 py-2",
+              path.includes("auth") && " text-slate-700"
+            )}
           >
-            <Link href={'/#services'} >Services</Link>
-          </div>
-          <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
+            <div>Services</div>
+          </Link>
+          <Link
+            href={"/#product"}
+            className={cn(
+              " hover:text-blue-600 text-slate-200  rounded px-2 md:px-4 py-2",
+              path.includes("auth") && " text-slate-700"
+            )}
           >
-            <Link href={'/#product'} >Products</Link>
-          </div>
+            <div>Products</div>
+          </Link>
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
+            className={cn(
+              " hover:text-blue-600 text-slate-200  rounded px-2 md:px-4 py-2",
+              path.includes("auth") && " text-slate-700"
+            )}
           >
             Testimony
           </div>
           <div
-            className={cn(" hover:text-green-600 text-slate-200  rounded px-2 md:px-4 py-2", path.includes("auth") && " text-slate-700")}
+            className={cn(
+              " hover:text-blue-600 text-slate-200  rounded px-2 md:px-4 py-2",
+              path.includes("auth") && " text-slate-700"
+            )}
           >
             FAQ
           </div>
@@ -133,19 +110,18 @@ export const MenuBar = ({params}: { params?: { user?: any } }) => {
                 <Link
                   href={`/account/${id}`}
                   prefetch
-                  className=" bg-green-600 w-20 py-3 hover:bg-green-400 px-4 text-sm rounded-md"
+                  className=" bg-blue-600 w-20 py-3 hover:bg-blue-700 px-4 text-sm rounded-md"
                 >
                   Dashboard
                 </Link>
               </div>
             </div>
           ) : (
-            <div className="flex gap-2">
+            <div className="flex gap-2 font-bold">
               <div>
                 <Link
                   href={"/auth/login"}
-                  prefetch
-                  className="  text-green-400 bg-transparent  w-20  py-3 hover:bg-green-400 hover:text-white px-4 text-sm rounded-md"
+                  className="  text-blue-700 bg-transparent  w-20  py-3 hover:bg-blue-700 hover:text-white px-4 text-sm rounded-md"
                 >
                   Login
                 </Link>
@@ -154,10 +130,8 @@ export const MenuBar = ({params}: { params?: { user?: any } }) => {
                 <Link
                   href={"/auth/register"}
                   prefetch
-                  className=" text-green-400 border bg-transparent  py-3 hover:bg-green-400 hover:text-white px-4 text-sm rounded-md  w-20"
-                >
-                  Sign up
-                </Link>
+                  className=" text-blue-700 border bg-transparent  py-3 hover:bg-blue-700 hover:text-white px-4 text-sm rounded-md  w-20"
+                >Register</Link>
               </div>
             </div>
           )}

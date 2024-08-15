@@ -7,10 +7,11 @@ import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
 import ChangePassword from './changePassword'
 import Profile from './view-profile'
+import ProfileExample from './test'
 
 function Personal() {
     const [step, setStep] = useState(0)
-    const items = [<Profile key={1} />,   <Profile key={2} /> , <NotificationSetting key={3} />, <ChangePassword key={4} />  ]
+    const items = [<ProfileExample key={1} /> ,   <ProfileExample key={2} /> , <NotificationSetting key={3} />, <ChangePassword key={4} />  ]
 
     let current = items[step]
   return (
@@ -26,10 +27,7 @@ function Personal() {
             <Button onClick={()=> setStep(2)} className={cn(' bg-transparent py-0 hover:bg-slate-100 transition-all duration-300 text-slate-600', step == 2 && " bg-slate-600 text-white hover:bg-slate-500")}>Notifications</Button>
             <Button onClick={()=> setStep(3)} className={cn(' bg-transparent py-0 hover:bg-slate-100 transition-all duration-300 text-slate-600', step == 3 && " bg-slate-600 text-white hover:bg-slate-500")}>Change Password</Button>
         </div>
-        <div className="personalInfo py-4">
-            <h3 className=' text-3xl font-medium'>Personal Information</h3>
-            <p className=' text-slate-500'>Basic info, like your name and address, that you use on Nio Platform</p>
-        </div>
+        
         {/* <div>
             <div className=' flex text-slate-600 gap-40 pb-4'>
                 <p>Full Name</p>

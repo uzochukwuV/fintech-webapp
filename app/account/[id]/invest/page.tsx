@@ -6,7 +6,7 @@ async function Page() {
     
   return (
     <div>
-        <Menu />
+      
         <SubComponent />
     </div>
   )

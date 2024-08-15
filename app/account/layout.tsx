@@ -1,9 +1,7 @@
 
-
-import React, { useContext } from "react";
-import { updateSession } from "@/lib/auth";
+import IsAuthenticated from "@/components/account/isAuthenticated";
 import { cn } from "@/lib/utils";
-import { serverHooks } from "next/dist/server/app-render/entry-base";
+
 
 
 

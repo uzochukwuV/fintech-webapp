@@ -62,8 +62,9 @@ export async function login(formData:any) {
     if(!isCorrectPassword){
         throw new Error("Invalid Password, Please retry, or Signup")
     }
-    const expires = new Date(Date.now() + 60 * 60 * 1000)
+    const expires = new Date(Date.now() + 5*60 * 60 * 1000)
     const session = await encrypt({user, expires})
+    
 
     cookies().set("session", session, {expires, httpOnly: true})
 
@@ -91,7 +92,7 @@ export async function register(formData:any) {
     const newUser = await User.create({...form})
     console.log(newUser);
     
-    const newAccount = await Account.create({_user:newUser._id})
+    const newAccount = await Account.create({_user:newUser})
     console.log(newAccount);
     
     
@@ -102,24 +103,4 @@ export async function register(formData:any) {
 
 export async function logout() {
     cookies().delete('session');
-
-
-}
-
-export async function updateSession(request:NextRequest){
-    const session = request.cookies.get("session")?.value;
-    if(!session) return;
-
-    const parsed = await decrypt(session);
-    parsed.expires = new Date(Date.now() + 60 * 60 * 1000)
-    const res = NextResponse.next();
-
-    res.cookies.set({
-        name: "session",
-        value: await encrypt(parsed),
-        httpOnly: true,
-        expires: parsed.expires,
-        
-    })
-    return session
 }

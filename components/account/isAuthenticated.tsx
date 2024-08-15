@@ -1,20 +1,27 @@
 "use client"
 
-import { Dispatch } from '@/app/state'
-import React, { useContext, useEffect } from 'react'
+import { Context, Dispatch } from '@/app/state'
+import React, { useContext, useEffect, useMemo } from 'react'
 
-function IsAuthenticated({params}: {params: {id: string}}) {
+function IsAuthenticated({id}:  {id: string}) {
 
     const dispatch = useContext(Dispatch)
     
+    
 
-    useEffect(()=> {
-        fetch('api/user/get', {
-          method: "POST",
-          body: JSON.stringify({id: params.id})
-        }).then((res)=> res.json())
-        .then((val)=>dispatch({type: "update", payload: {...val} }) )
-    }, [params.id])
+    useMemo(() =>  
+      fetch("/api/user/get", {
+       method: 'POST',
+      
+       body: JSON.stringify({id: id})
+     }).then((res)=> res.json()
+     ).then((value)=> {
+      console.log(value);
+      dispatch({type: 'update', payload: value})
+      
+     }), [])
+  
+  
 
 
   return (

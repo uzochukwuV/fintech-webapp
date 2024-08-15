@@ -8,7 +8,7 @@ async function Page() {
     
   return (
     <div>
-        <Menu />
+        
         <Dashboard />
         <ActivePlans />
     </div>

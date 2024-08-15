@@ -1,17 +1,18 @@
-import Blog from "@/components/home/blog";
-import Footer from "@/components/home/footer";
 import { Hero } from "@/components/home/hero";
 import { MenuBar } from "@/components/home/menu-bar";
-import NewsLetter from "@/components/home/newsletter";
+
 import Plans from "@/components/home/plans";
-import { SideBar } from "@/components/home/side-bar";
-// import { getUser } from "@/lib/helpers";
+
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+
 import { cookies } from "next/headers";
-import { decrypt, updateSession } from "@/lib/auth";
+import { decrypt } from "@/lib/auth";
 import Service from "@/components/home/services";
-import SubComponent from "@/components/home/sub";
+import  { SubComponentOne } from "@/components/home/sub";
+import Footer from "@/components/home/footer";
+import Image from "next/image";
+import { TradingViewWidget } from "./tradingview";
+
 
 export default async function Home() {
   const cookie = cookies().get("session")?.value;
@@ -21,15 +22,30 @@ export default async function Home() {
     user = await decrypt(cookie!);
   }
 
+
+  
+
   return (
     <section className="absolute top-0 left-0 right-0">
+      <div className='background-video fixed right-0 left-0 top-0 bottom-0 -z-10 blur-md'>
+          <Image src="/svg/circuit-board.svg" alt='Hero Image' width={1000} height={1000} className='object-cover h-full w-full'></Image>
+        </div>
       <header className={cn("")}>
-        <MenuBar params={{ user: user?.user }} />
+        <MenuBar cookieId={user?.user._id} />
       </header>
       <Hero />
+      <br />
+      <TradingViewWidget />
+
+<SubComponentOne />
+
       <Plans />
       <Service />
-      <SubComponent />
+      
+      <Footer />
     </section>
   );
 }
+
+
+

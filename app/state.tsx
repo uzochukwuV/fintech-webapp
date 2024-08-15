@@ -51,7 +51,6 @@ function reducer(state:{user:string, account:string}, action: {type:string, payl
 
 
 function Provider({children}: PropsWithChildren) {
-  const [val, setVal] = useState(al)
   const [state, dispatch] = useReducer(reducer, al)
 
   return (
